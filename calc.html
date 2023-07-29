@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .fundo{
+            background-image: linear-gradient(45deg, black, rgb(33, 33, 124));
+            height: 100vh;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        .calculadora{
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.781);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 10px;
+            padding: 15px;
+            align-items: center;
+
+        }
+
+        table{
+            margin: auto;
+        }
+
+        button{
+            margin: 3px;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: rgb(78, 78, 78);
+            border: none;
+            color: white;
+
+        }
+
+        button:hover{
+            background-color: black;
+        }
+
+        #result{
+            margin: auto;
+            padding: 5px;
+            font-size: 20px;
+            text-align: right;
+            color: black;
+            width: 300px;
+            height: 30px;
+            background-color: white;
+        }
+
+        span{
+            background-color: yellow;
+            padding: 5px;
+            color: black;
+            font-weight: bolder;
+            border-radius: 10px;
+        }
+
+        .calculadora>h1{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="fundo">
+        <h1> PROJETO CALC V.1</h1>
+        <div class="calculadora">
+            <h1>Calculadora em <span>JS</span></h1>
+            <p id="result"></p>
+            <table>
+                <tr>
+                    <td><button onclick="clean()">C</button></td>
+                    <td><button onclick="back()"><</button></td>
+                    <td><button onclick="insert('/')">/</button></td>
+                    <td><button onclick="insert('*')">*</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="insert('7')">7</button></td>
+                    <td><button onclick="insert('8')">8</button></td>
+                    <td><button onclick="insert('9')">9</button></td>
+                    <td><button onclick="insert('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="insert('4')">4</button></td>
+                    <td><button onclick="insert('5')">5</button></td>
+                    <td><button onclick="insert('6')">6</button></td>
+                    <td><button onclick="insert('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="insert('1')">1</button></td>
+                    <td><button onclick="insert('2')">2</button></td>
+                    <td><button onclick="insert('3')">3</button></td>
+                    <td rowspan="2"><button style="height: 106px;" onclick="calcular()">=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button style="width: 106px;" onclick="insert('0')">0</button></td>
+                    <td><button onclick="insert(',')">,</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        function insert(num)
+        {
+            var numero = document.getElementById('result').innerHTML;
+            document.getElementById('result').innerHTML = numero + num;
+
+        }
+
+        function clean()
+        {
+            document.getElementById('result').innerHTML = "";
+        }
+
+        function back()
+        {
+            var result = document.getElementById('result').innerHTML;
+            document.getElementById('result').innerHTML = result.substring(0, result.length -1);
+        }
+
+        function calcular()
+        {
+            var result = document.getElementById('result').innerHTML;
+            if(result)
+            {
+                document.getElementById('result').innerHTML = eval(result);
+            }
+            else
+            {
+                document.getElementById('result').innerHTML = 0;
+            }
+        }
+    </script>
+</body>
+</html>
